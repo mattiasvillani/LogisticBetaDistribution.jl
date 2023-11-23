@@ -1,5 +1,8 @@
 module LogisticBetaDistribution
 
-# Write your package code here.
+using Distributions, SpecialFunctions, Random, LogExpFunctions
 
-end
+include("LogisticBeta.jl")
+export LogisticBeta
+
+end # End module
