@@ -1,0 +1,13 @@
+name = "LogisticBetaDistribution"
+uuid = "59b8652b-d2f9-4a66-a653-7a5f669fef35"
+authors = ["Mattias Villani", "Oskar Gustafsson"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.9"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
