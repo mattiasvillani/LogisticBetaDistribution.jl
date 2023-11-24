@@ -14,12 +14,12 @@ The general LogisticBeta(α, β, μ, σ) is obtained by the Distributions.jl loc
 
 # Examples
 ```julia-repl
-julia> dist = LogisticBeta(1/2, 1/2)
-julia> rand(dist, 4)'
+julia> d = LogisticBeta(1/2, 1/2)
+julia> rand(d, 4)'
 1×4 adjoint(::Vector{Float64}) with eltype Float64:
  1.00851  0.640297  0.566234  2.16941
-julia> pdf(dist, 1)
-julia> cdf(dist, 1)
+julia> pdf(d, 1)
+julia> cdf(d, 1)
 julia> dist_general = 3 + 2*LogisticBeta(1/2, 1/2)
 julia> pdf(dist_general, 1)
 ```
@@ -36,36 +36,36 @@ function rand(rng::Random.AbstractRNG, d::LogisticBeta)
     return logit.(x) # this is log.(x./(1 .- x))
 end
 
-function Distributions.pdf(dist::LogisticBeta, x::Real)
-    return (logistic(x)^dist.α * logistic(-x)^dist.β)/beta(dist.α,dist.β)
+function Distributions.pdf(d::LogisticBeta, x::Real)
+    return (logistic(x)^d.α * logistic(-x)^d.β)/beta(d.α,d.β)
 end
 
-function Distributions.logpdf(dist::LogisticBeta, x::Real)
-    return -logbeta(dist.α, dist.β) + dist.α*x - (dist.α + dist.β)*log1pexp(x) 
+function Distributions.logpdf(d::LogisticBeta, x::Real)
+    return -logbeta(d.α, d.β) + d.α*x - (d.α + d.β)*log1pexp(x) 
                                                             # log1pexp(x) = log(1 + exp(x))
 end
 
-function Distributions.cdf(dist::LogisticBeta, x::Real)
-    return beta_inc(dist.α, dist.β, logistic(x))[1]
+function Distributions.cdf(d::LogisticBeta, x::Real)
+    return beta_inc(d.α, d.β, logistic(x))[1]
 end
 
-function Distributions.quantile(dist::LogisticBeta, p)
-    quantBeta = quantile(Beta(dist.α, dist.β), p)
+function Distributions.quantile(d::LogisticBeta, p)
+    quantBeta = quantile(Beta(d.α, d.β), p)
     return logit(quantBeta)  
 end
 
-function Distributions.mean(dist::LogisticBeta)
-    return digamma(dist.α) - digamma(dist.β)
+function Distributions.mean(d::LogisticBeta)
+    return digamma(d.α) - digamma(d.β)
 end
 
-function Distributions.var(dist::LogisticBeta)
-    return trigamma(dist.α) + trigamma(dist.β)
+function Distributions.var(d::LogisticBeta)
+    return trigamma(d.α) + trigamma(d.β)
 end
 
-function Distributions.std(dist::LogisticBeta)
-    return sqrt(trigamma(dist.α) + trigamma(dist.β))
+function Distributions.std(d::LogisticBeta)
+    return sqrt(trigamma(d.α) + trigamma(d.β))
 end
 
-function Distributions.params(dist::LogisticBeta)
-    return dist.α, dist.β
+function Distributions.params(d::LogisticBeta)
+    return d.α, d.β
 end
