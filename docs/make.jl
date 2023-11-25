@@ -6,7 +6,7 @@ DocMeta.setdocmeta!(LogisticBetaDistribution, :DocTestSetup, :(using LogisticBet
 makedocs(;
     sitename="LogisticBetaDistribution.jl",
     modules=[LogisticBetaDistribution],
-    authors="Mattias Villani, Oskar Gustafsson",
+    authors="Mattias Villani",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://mattiasvillani.github.io/LogisticBetaDistribution.jl",

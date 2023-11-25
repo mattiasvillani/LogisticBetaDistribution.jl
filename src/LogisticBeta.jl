@@ -9,7 +9,7 @@ The Logistic-Beta distribution, also known Generalized Logistic distribution of 
 
 ```math
 f(x) = \\frac{1}{\\mathrm{B}(\\alpha,\\beta)} 
-       \\frac{e^{-\\beta x}}{(1 + e^{-x})^(\\alpha+\\beta)}, \\quad -\\infty x \\infty
+       \\frac{e^{-\\beta x}}{(1 + e^{-x})^{(\\alpha+\\beta)}}, \\quad -\\infty < x < \\infty
 ```
  
 The distribution is defined by:
