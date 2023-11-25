@@ -6,6 +6,11 @@ import Base.length
     LogisticBeta(α, β) 
 
 The Logistic-Beta distribution, also known Generalized Logistic distribution of Type IV.
+
+```math
+f(x) = \\frac{1}{\\mathrm{B}(\\alpha,\\beta)} 
+       \\frac{e^{-\\beta x}}{1 + e^{-x}}^(\\alpha+\\beta), \\quad x \\in \\mathbb{R}
+```
  
 The distribution is defined by:
 
@@ -14,6 +19,17 @@ If Y ∼ Beta(α, β), then X = log(Y/(1-Y)) ∼ LogisticBeta(α, β).
 The general LogisticBeta(α, β, μ, σ) is obtained by the location-scale construction: 
 
 LogisticBeta(α, β, μ, σ) = μ + σ*LogisticBeta(α, β)
+
+
+
+
+```julia
+LogisticBeta(1/2, 1/2)   # LogisticBeta distribution with shape parameters α and β
+
+params(d)          # Get the parameters, i.e. (α and β)
+pdf(d, 0.5)        # Probability density function at x = 0.5
+mean(d)            # Mean 
+```
 
 External links
 
