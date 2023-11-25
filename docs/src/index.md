@@ -4,13 +4,11 @@ CurrentModule = LogisticBetaDistribution
 
 # LogisticBetaDistribution
 
-Documentation for the [Logistic-Beta Distribution](https://github.com/mattiasvillani/LogisticBetaDistribution.jl) also known as Type IV generalized logistic distribution.
-
-
-```@docs
-LogisticBeta
-```
+Documentation for [LogisticBetaDistribution](https://github.com/mattiasvillani/LogisticBetaDistribution.jl).
 
 ```@index
 ```
 
+```@autodocs
+Modules = [LogisticBetaDistribution]
+```
