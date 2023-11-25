@@ -1,4 +1,4 @@
-import Distributions: logpdf, pdf, cdf, quantile, std, mean, @check_args, @distr_support
+import Distributions: logpdf, pdf, cdf, quantile, std, mean, skewness, @check_args, @distr_support
 import Base.rand
 import Base.length
 
