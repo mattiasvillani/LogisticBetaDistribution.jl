@@ -18,11 +18,11 @@ using Distributions: mean, std, var, pdf, logpdf, cdf, quantile
 
     # Z-distribution, location scale variant
     x = 1; μ = 2; σ = 3;
-    @test mean(LogisticBeta(1/2,1/2, μ, σ)) ≈ μ 
-    @test std(LogisticBeta(1/2,1/2, 0, σ)) ≈ σ*std(LogisticBeta(1/2,1/2))
+    @test mean(μ + LogisticBeta(1/2,1/2)) ≈ μ 
+    @test std(LogisticBeta(1/2, 1/2)*σ) ≈ σ*std(LogisticBeta(1/2,1/2))
     
-    @test pdf(LogisticBeta(1/2,1/2, μ, σ), x) ≈ (1/σ)*pdf(LogisticBeta(1/2,1/2), (x-μ)/σ)
-    @test cdf(LogisticBeta(1/2,1/2, μ, σ), x) ≈ cdf(LogisticBeta(1/2,1/2), (x-μ)/σ)
+    @test pdf(μ + LogisticBeta(1/2,1/2)*σ, x) ≈ (1/σ)*pdf(LogisticBeta(1/2,1/2), (x-μ)/σ)
+    @test cdf(μ + LogisticBeta(1/2,1/2)*σ, x) ≈ cdf(LogisticBeta(1/2,1/2), (x-μ)/σ)
 
     
 end
