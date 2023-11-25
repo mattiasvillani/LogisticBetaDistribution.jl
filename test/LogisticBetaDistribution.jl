@@ -4,17 +4,22 @@ using Distributions: mean, std, var, pdf, logpdf, cdf, quantile
 @testset "LogisticBetaTests.jl" begin
 
 
-    dist = LogisticBeta(1/2,1/2)
-    @test cdf.(dist, quantile.(dist, 0.1:0.1:0.9)) ≈ 0.1:0.1:0.9
+    d = LogisticBeta(1/2,1/2)
+    @test cdf.(d, quantile.(d, 0.1:0.1:0.9)) ≈ 0.1:0.1:0.9
 
-    dist = LogisticBeta(3/2,3/2)
-    @test cdf.(dist, quantile.(dist, 0.1:0.1:0.9)) ≈ 0.1:0.1:0.9
+    d = LogisticBeta(3/2,3/2)
+    @test cdf.(d, quantile.(d, 0.1:0.1:0.9)) ≈ 0.1:0.1:0.9
 
-    @test pdf(dist, 1) ≈ exp(logpdf(dist, 1))
+    @test pdf(d, 1) ≈ exp(logpdf(d, 1))
 
-    @test cdf(dist,-1) ≈ 1 - cdf(dist, 1) # symmetry test
+    @test cdf(d,-1) ≈ 1 - cdf(d, 1) # symmetry test
 
-    @test var(dist) ≈ std(dist).^2
+    @test var(d) ≈ std(d).^2
+
+    β = rand()
+    params(LogisticBeta(2*β, β)) == (2*β, β)
+    @test mode(LogisticBeta(2*β, β)) ≈ log(2) 
+    @test mean(LogisticBeta(1, 2)) ≈ -1
 
     # Z-distribution, location scale variant
     x = 1; μ = 2; σ = 3;
