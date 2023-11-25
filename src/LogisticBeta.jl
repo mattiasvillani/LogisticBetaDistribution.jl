@@ -54,7 +54,8 @@ struct LogisticBeta{T<:Real} <: ContinuousUnivariateDistribution
 end
 
 function LogisticBeta(α::T, β::T; check_args::Bool=true) where {T <: Real}
-    @check_args LogisticBeta (α, α > zero(α)) (α, α > zero(α))
+    @check_args LogisticBeta (α, α > zero(α)) 
+    @check_args LogisticBeta (β, β > zero(β))
     return LogisticBeta{T}(α, β)
 end
 
