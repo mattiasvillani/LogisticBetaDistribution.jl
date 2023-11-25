@@ -17,6 +17,8 @@ using Distributions: mean, std, var, pdf, logpdf, cdf, quantile, skewness
 
     @test var(d) ≈ std(d).^2
 
+    @test length(rand(d, 4)) == 4
+
     β = rand()
     params(LogisticBeta(2*β, β)) == (2*β, β)
     @test mode(LogisticBeta(2*β, β)) ≈ log(2) 
