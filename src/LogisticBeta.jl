@@ -24,7 +24,7 @@ LogisticBeta(α, β, μ, σ) = μ + σ*LogisticBeta(α, β)
 
 
 ```julia
-LogisticBeta(1/2, 1/2)   # LogisticBeta distribution with shape parameters α and β
+d = LogisticBeta(1/2, 1/2)   # LogisticBeta distribution with shape parameters α and β
 
 params(d)          # Get the parameters, i.e. (α and β)
 pdf(d, 0.5)        # Probability density function at x = 0.5
