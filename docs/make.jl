@@ -19,7 +19,6 @@ makedocs(;
     ],
 )
 
-#deploydocs(;
-#    repo="github.com/mattiasvillani/LogisticBetaDistribution.jl",
-#    devbranch="main",
-#)
+deploydocs(;
+    repo="github.com/mattiasvillani/LogisticBetaDistribution.jl",
+)
