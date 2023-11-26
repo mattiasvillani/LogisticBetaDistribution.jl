@@ -68,9 +68,6 @@ LogisticBeta(α::Integer, β::Integer; check_args::Bool=true) = LogisticBeta(
 
 Base.eltype(::Type{LogisticBeta{T}}) where {T} = T
 
-# Non-standardized LogisticBeta
-# LogisticBeta(α::T, β::T, μ::T, σ::T) = μ + σ*LogisticBeta(α::T, β::T) where {T<:Real}
-
 #### Conversions
 convert(::Type{LogisticBeta{T}}, α::S, β::S) where {T <: Real, S <: Real} = 
     LogisticBeta(T(α), T(β))
