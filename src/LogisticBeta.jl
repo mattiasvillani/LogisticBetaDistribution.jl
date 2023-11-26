@@ -82,20 +82,77 @@ Base.convert(::Type{LogisticBeta{T}}, d::LogisticBeta{T}) where {T<:Real} = d
 params(d::LogisticBeta) = (d.α, d.β)
 partype(::LogisticBeta{T}) where {T} = T
 
+""" 
+    rand(d::LogisticBeta[, n::Integer])
+
+Draw `n` random numbers from the logistic-beta distribution `d`. 
+""" 
 function Base.rand(rng::Random.AbstractRNG, d::LogisticBeta)
     x = rand(rng, Beta(d.α, d.β))
     return logit.(x) # this is log.(x./(1 .- x))
 end
 #TODO: Implement rand!(rng::Random.AbstractRNG, d::LogisticBeta, x::AbstractArray)
 
-pdf(d::LogisticBeta, x::Real) = (logistic(x)^d.α * logistic(-x)^d.β)/beta(d.α,d.β)
-logpdf(d::LogisticBeta, x::Real) = -logbeta(d.α, d.β) + d.α*x - 
-    (d.α + d.β)*log1pexp(x)                    
-cdf(d::LogisticBeta, x::Real) = beta_inc(d.α, d.β, logistic(x))[1]
-quantile(d::LogisticBeta, p) = logit(quantile(Beta(d.α, d.β), p))
+""" 
+    pdf(d::LogisticBeta, x::Real) 
 
+Compute the pdf of the logistic-beta distribution `d` at `x`. 
+""" 
+pdf(d::LogisticBeta, x::Real) = (logistic(x)^d.α * logistic(-x)^d.β)/beta(d.α,d.β)
+
+""" 
+    logpdf(d::LogisticBeta, x::Real) 
+
+Compute the logpdf of the logistic-beta distribution `d` at `x`. 
+""" 
+logpdf(d::LogisticBeta, x::Real) = -logbeta(d.α, d.β) + d.α*x - 
+    (d.α + d.β)*log1pexp(x)       
+    
+""" 
+    cdf(d::LogisticBeta, x::Real) 
+
+Compute the cdf of the logistic-beta distribution `d` at `x`. 
+""" 
+cdf(d::LogisticBeta, x::Real) = beta_inc(d.α, d.β, logistic(x))[1]
+
+""" 
+quantile(d::LogisticBeta, p::Real) 
+
+Compute the `p`-quantile of the logistic-beta distribution `d`. 
+""" 
+quantile(d::LogisticBeta, p::Real) = logit(quantile(Beta(d.α, d.β), p))
+
+""" 
+mean(d::LogisticBeta) 
+
+Compute the mean of the logistic-beta distribution `d`. 
+""" 
 mean(d::LogisticBeta) = digamma(d.α) - digamma(d.β)
+
+""" 
+mode(d::LogisticBeta) 
+
+Compute the mode of the logistic-beta distribution `d`. 
+""" 
 mode(d::LogisticBeta) = log(d.α/d.β)
+
+""" 
+var(d::LogisticBeta) 
+
+Compute the variance of the logistic-beta distribution `d`. 
+""" 
 var(d::LogisticBeta) = trigamma(d.α) + trigamma(d.β)
+
+""" 
+std(d::LogisticBeta) 
+
+Compute the standard deviation of the logistic-beta distribution `d`. 
+""" 
 std(d::LogisticBeta) = sqrt(trigamma(d.α) + trigamma(d.β))
+
+""" 
+skewness(d::LogisticBeta) 
+
+Compute the skewness of the logistic-beta distribution `d`. 
+""" 
 skewness(d::LogisticBeta) = (polygamma(2, d.α) - polygamma(2, d.β))/(var(d::LogisticBeta)^3)

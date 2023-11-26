@@ -25,6 +25,7 @@ using Distributions: mean, std, var, pdf, logpdf, cdf, quantile, skewness
     @test mean(LogisticBeta(1, 2)) ≈ -1
 
     @test LogisticBeta(1, 2) == LogisticBeta(1.0, 2.0)
+    @test LogisticBeta(1, 2.0) == LogisticBeta(1.0, 2.0)
 
     # Z-distribution, location scale variant
     x = 1; μ = 2; σ = 3;
